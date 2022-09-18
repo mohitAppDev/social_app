@@ -4,6 +4,8 @@ import 'package:social_app/constants/constants.dart';
 import 'package:social_app/pages/welcome/welcome_controller.dart';
 import '../../common/common.dart';
 import '../../models/post.dart';
+import '../../routes/app_routes.dart';
+import '../users/user_list.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -15,6 +17,44 @@ class WelcomePage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('INSTA SHARE'),
+            actions: [
+              PopupMenuButton<int>(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 1,
+                    child: InkWell(
+                      onTap: (){
+                        Get.toNamed("/users")?.then((value) {
+                          Get.back();
+                        });
+                      },
+                      child: Row(
+                        children: const [
+                          Icon(Icons.person),
+                          SizedBox(width: 10),
+                          Text("Users")
+                        ],
+                      ),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 2,
+                    child: Row(
+                      children: const [
+                        Icon(Icons.logout_outlined),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text("Logout")
+                      ],
+                    ),
+                  ),
+                ],
+                offset: const Offset(0, 50),
+                color: Colors.grey,
+                elevation: 2,
+              ),
+            ],
           ),
           body: controller.isInternet
               ? SingleChildScrollView(

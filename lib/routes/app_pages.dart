@@ -12,6 +12,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.comment,
       page: () => const CommentPage(),
+    ),
+    GetPage(
+      name: AppRoutes.users,
+      page: () => const UserPage(),
     )
   ];
 }
