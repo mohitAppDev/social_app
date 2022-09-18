@@ -45,7 +45,7 @@ class WelcomePage extends StatelessWidget {
                                       controller.sortByPopularity(value);
                                     },
                                     iconData: const Icon(Icons.arrow_drop_down_sharp),
-                                    text: Text(LabelConst.labelDropFilter,
+                                    text: Text(LabelConst.labelDropPropFilter,
                                         style: Theme.of(context).textTheme.subtitle2,
                                         overflow: TextOverflow.ellipsis
                                     ),
@@ -56,7 +56,7 @@ class WelcomePage extends StatelessWidget {
                                   width: 165, height: 30,
                                   child: ReusableDropDown(
                                     selectedValue: controller.dateFilterValue,
-                                    items: ["Latest to Old", "Old to Latest"].map((item) => DropdownMenuItem<String>(
+                                    items: ["High to Low", "Low to High"].map((item) => DropdownMenuItem<String>(
                                       value: item,
                                       child: Text(item, style: const TextStyle(
                                           fontSize: 12,
@@ -70,7 +70,7 @@ class WelcomePage extends StatelessWidget {
                                       controller.sortByDate(value);
                                     },
                                     iconData: const Icon(Icons.arrow_drop_down_sharp),
-                                    text: Text("SORT BY DATE",
+                                    text: Text(LabelConst.labelDropComFilter,
                                         style: Theme.of(context).textTheme.subtitle2,
                                         overflow: TextOverflow.ellipsis
                                     ),

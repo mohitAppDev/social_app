@@ -5,5 +5,6 @@ class LabelConst {
 
   // Welcome
   static const labelPostNotFound = "POST NOT AVAILABLE";
-  static const labelDropFilter = "SORT BY POPULARITY";
+  static const labelDropPropFilter = "SORT BY POPULARITY";
+  static const labelDropComFilter = "SORT BY COMMENT";
 }

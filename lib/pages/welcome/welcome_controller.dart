@@ -43,23 +43,47 @@ class WelcomeController extends GetxController {
   void sortByPopularity(val) {
     likeFilterValue = val;
     dateFilterValue = null;
-    update();
-    if(likeFilterValue == "High to Low") {
-      getPostListItem();
-    } else {
-      getPostListItem();
+    var jsonData = postList;
+    List<PostModel> lists = [];
+    for (var v in jsonData) {
+      PostModel list = PostModel();
+      list.id = v['id'];
+      list.likeCount = v['likeCount'];
+      list.commentCount = v['commentCount'];
+      list.description = v['description'];
+      list.url = v['url'];
+      lists.add(list);
     }
+    if(likeFilterValue == "High to Low") {
+      lists.sort((a, b) => a.likeCount?.compareTo(b.likeCount!) ?? 0);
+    } else {
+      lists.sort((a, b) => -(a.likeCount?.compareTo(b.likeCount!) ?? 0));
+    }
+    postListData = lists;
+    update();
   }
 
   void sortByDate(val) {
-    dateFilterValue = val;
-    likeFilterValue = null;
-    update();
-    if(dateFilterValue == "High to Low") {
-      getPostListItem();
-    } else {
-      getPostListItem();
+    likeFilterValue = val;
+    dateFilterValue = null;
+    var jsonData = postList;
+    List<PostModel> lists = [];
+    for (var v in jsonData) {
+      PostModel list = PostModel();
+      list.id = v['id'];
+      list.likeCount = v['likeCount'];
+      list.commentCount = v['commentCount'];
+      list.description = v['description'];
+      list.url = v['url'];
+      lists.add(list);
     }
+    if(likeFilterValue == "High to Low") {
+      lists.sort((a, b) => a.commentCount?.compareTo(b.commentCount!) ?? 0);
+    } else {
+      lists.sort((a, b) => -(a.commentCount?.compareTo(b.commentCount!) ?? 0));
+    }
+    postListData = lists;
+    update();
   }
 
   @override

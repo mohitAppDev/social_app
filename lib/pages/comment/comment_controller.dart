@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:social_app/models/comment.dart';
 import '../../enums/data/comment.dart';
 
 class CommentController extends GetxController {
+  dynamic a = Get.arguments;
   bool isInternet = false;
   List<CommentModel> ?commentListData;
   ScrollController? listItemScroll;
@@ -29,11 +31,13 @@ class CommentController extends GetxController {
     List<CommentModel> lists = [];
     for (var v in jsonData) {
       CommentModel list = CommentModel();
-      list.id = v['id'];
-      list.comment = v['comment'];
-      list.postId = v['postId'];
-      list.email = v['email'];
-      lists.add(list);
+      if(a == v['postId']) {
+        list.id = v['id'];
+        list.comment = v['comment'];
+        list.postId = v['postId'];
+        list.email = v['email'];
+        lists.add(list);
+      }
     }
     commentListData = lists;
     update();

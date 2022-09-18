@@ -62,7 +62,7 @@ class ReusableCard extends StatelessWidget {
                         children: <Widget>[
                           const Icon(
                               Icons.thumb_up_alt_outlined,
-                              size: 14,
+                              size: 18,
                               color: Color.fromRGBO(172, 172, 172, 1)),
                           Text(
                             likeCount,
@@ -76,7 +76,7 @@ class ReusableCard extends StatelessWidget {
                                   172,
                                   172,
                                   1),
-                              fontSize: 14,
+                              fontSize: 18,
                               fontWeight:
                               FontWeight
                                   .normal,
@@ -87,29 +87,21 @@ class ReusableCard extends StatelessWidget {
                       const SizedBox(width: 36),
                       InkWell(
                         onTap: (){
-                          Get.toNamed(AppRoutes.comment, arguments: [{"commentId": id},{"is_owner": false}]);
+                          Get.toNamed(AppRoutes.comment, arguments: id);
                         },
                         child: Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment
-                              .spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             const Icon(
-                                Icons
-                                    .mode_comment_outlined,
-                                size: 14,
-                                color:
-                                Color.fromRGBO(
-                                    172,
-                                    172,
-                                    172,
-                                    1)),
+                                Icons.mode_comment_outlined,
+                                size: 18, color: Color.fromRGBO(172, 172, 172, 1),
+                            ),
                             Text(
                               commentCount,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
                                 color: Color.fromRGBO(172, 172, 172, 1),
-                                fontSize: 14,
+                                fontSize: 18,
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
