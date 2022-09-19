@@ -4,8 +4,6 @@ import 'package:social_app/constants/constants.dart';
 import 'package:social_app/pages/welcome/welcome_controller.dart';
 import '../../common/common.dart';
 import '../../models/post.dart';
-import '../../routes/app_routes.dart';
-import '../users/user_list.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -57,7 +55,7 @@ class WelcomePage extends StatelessWidget {
             ],
           ),
           body: controller.isInternet
-              ? SingleChildScrollView(
+              ? controller.isLoading ? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 10),
                     child: controller.postListData == null

@@ -12,6 +12,7 @@ class WelcomeController extends GetxController {
   ScrollController? listItemScroll;
   String ?likeFilterValue;
   String ?dateFilterValue;
+  bool isLoading = false;
 
   Future<void> checkNetwork() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -25,6 +26,8 @@ class WelcomeController extends GetxController {
   }
 
   Future<void> getPostListItem() async {
+    isLoading = true;
+    update();
     var jsonData = postList;
     List<PostModel> lists = [];
     for (var v in jsonData) {
@@ -37,12 +40,15 @@ class WelcomeController extends GetxController {
       lists.add(list);
     }
     postListData = lists;
+    isLoading = false;
     update();
   }
 
   void sortByPopularity(val) {
+    isLoading = true;
     likeFilterValue = val;
     dateFilterValue = null;
+    update();
     var jsonData = postList;
     List<PostModel> lists = [];
     for (var v in jsonData) {
@@ -55,17 +61,20 @@ class WelcomeController extends GetxController {
       lists.add(list);
     }
     if(likeFilterValue == "High to Low") {
-      lists.sort((a, b) => a.likeCount?.compareTo(b.likeCount!) ?? 0);
-    } else {
       lists.sort((a, b) => -(a.likeCount?.compareTo(b.likeCount!) ?? 0));
+    } else {
+      lists.sort((a, b) => a.likeCount?.compareTo(b.likeCount!) ?? 0);
     }
     postListData = lists;
+    isLoading = false;
     update();
   }
 
   void sortByDate(val) {
-    likeFilterValue = val;
-    dateFilterValue = null;
+    isLoading = true;
+    likeFilterValue = null;
+    dateFilterValue = val;
+    update();
     var jsonData = postList;
     List<PostModel> lists = [];
     for (var v in jsonData) {
@@ -78,11 +87,12 @@ class WelcomeController extends GetxController {
       lists.add(list);
     }
     if(likeFilterValue == "High to Low") {
-      lists.sort((a, b) => a.commentCount?.compareTo(b.commentCount!) ?? 0);
+      lists.sort((a, b) => -(a.likeCount?.compareTo(b.likeCount!) ?? 0));
     } else {
-      lists.sort((a, b) => -(a.commentCount?.compareTo(b.commentCount!) ?? 0));
+      lists.sort((a, b) => a.likeCount?.compareTo(b.likeCount!) ?? 0);
     }
     postListData = lists;
+    isLoading = false;
     update();
   }
 
